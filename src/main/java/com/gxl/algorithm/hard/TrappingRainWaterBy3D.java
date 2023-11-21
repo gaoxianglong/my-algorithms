@@ -14,7 +14,7 @@ import java.util.PriorityQueue;
  * @version Id: 1.0.0
  * @since 2023/11/21 18:10
  */
-public class TrappingRainWater {
+public class TrappingRainWaterBy3D {
     public int trapRainWater(int[][] heights) {
         var rlt = 0;
         if (Objects.isNull(heights) || heights.length < 1 || heights[0].length < 1) {
@@ -61,7 +61,7 @@ public class TrappingRainWater {
     }
 
     public static void main(String[] args) {
-        Assert.assertEquals(4, new TrappingRainWater().trapRainWater(new int[][]{
+        Assert.assertEquals(4, new TrappingRainWaterBy3D().trapRainWater(new int[][]{
                 //
                 {1, 4, 3, 1, 3, 2},
                 //
@@ -69,7 +69,7 @@ public class TrappingRainWater {
                 //
                 {2, 3, 3, 2, 3, 1}}));
 
-        Assert.assertEquals(2, new TrappingRainWater().trapRainWater(new int[][]{
+        Assert.assertEquals(2, new TrappingRainWaterBy3D().trapRainWater(new int[][]{
                 //
                 {2, 2, 2},
                 //
@@ -79,7 +79,7 @@ public class TrappingRainWater {
                 //
                 {2, 2, 2}}));
 
-        Assert.assertEquals(0, new TrappingRainWater().trapRainWater(new int[][]{
+        Assert.assertEquals(0, new TrappingRainWaterBy3D().trapRainWater(new int[][]{
                 //
                 {2, 2, 2},
                 //
