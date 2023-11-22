@@ -31,13 +31,13 @@ public class TrappingRainWaterBy3D {
                     visited[i][j] = true;
 
                     // 短板效应,始终先处理最低高度的点
-                    queue.offer(new int[]{i, j, heights[i][j]});
+                    queue.offer(new int[] { i, j, heights[i][j] });
                 }
             }
         }
 
-        var t1 = new int[]{0, 0, 1, -1};
-        var t2 = new int[]{1, -1, 0, 0};
+        var t1 = new int[] { 0, 0, 1, -1 };
+        var t2 = new int[] { 1, -1, 0, 0 };
         while (!queue.isEmpty()) {
             // 高度最低的点出队
             var p = queue.poll();
@@ -53,7 +53,7 @@ public class TrappingRainWaterBy3D {
                     visited[newX][newY] = true;
 
                     // 盛水后需要填充点的高度和外围高度最低的点相同(水流方向),然后入队按照由低到高依次处理
-                    queue.offer(new int[]{newX, newY, Math.max(heights[newX][newY], p[2])});
+                    queue.offer(new int[] { newX, newY, Math.max(heights[newX][newY], p[2]) });
                 }
             }
         }
@@ -61,32 +61,32 @@ public class TrappingRainWaterBy3D {
     }
 
     public static void main(String[] args) {
-        Assert.assertEquals(4, new TrappingRainWaterBy3D().trapRainWater(new int[][]{
-                //
-                {1, 4, 3, 1, 3, 2},
-                //
-                {3, 2, 1, 3, 2, 4},
-                //
-                {2, 3, 3, 2, 3, 1}}));
+        Assert.assertEquals(4, new TrappingRainWaterBy3D().trapRainWater(new int[][] {
+                                                                                       //
+                                                                                       { 1, 4, 3, 1, 3, 2 },
+                                                                                       //
+                                                                                       { 3, 2, 1, 3, 2, 4 },
+                                                                                       //
+                                                                                       { 2, 3, 3, 2, 3, 1 } }));
 
-        Assert.assertEquals(2, new TrappingRainWaterBy3D().trapRainWater(new int[][]{
-                //
-                {2, 2, 2},
-                //
-                {2, 1, 2},
-                //
-                {2, 1, 2},
-                //
-                {2, 2, 2}}));
+        Assert.assertEquals(2, new TrappingRainWaterBy3D().trapRainWater(new int[][] {
+                                                                                       //
+                                                                                       { 2, 2, 2 },
+                                                                                       //
+                                                                                       { 2, 1, 2 },
+                                                                                       //
+                                                                                       { 2, 1, 2 },
+                                                                                       //
+                                                                                       { 2, 2, 2 } }));
 
-        Assert.assertEquals(0, new TrappingRainWaterBy3D().trapRainWater(new int[][]{
-                //
-                {2, 2, 2},
-                //
-                {2, 1, 2},
-                //
-                {2, 1, 2},
-                //
-                {2, 1, 2}}));
+        Assert.assertEquals(0, new TrappingRainWaterBy3D().trapRainWater(new int[][] {
+                                                                                       //
+                                                                                       { 2, 2, 2 },
+                                                                                       //
+                                                                                       { 2, 1, 2 },
+                                                                                       //
+                                                                                       { 2, 1, 2 },
+                                                                                       //
+                                                                                       { 2, 1, 2 } }));
     }
 }
