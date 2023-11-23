@@ -62,31 +62,31 @@ public class TrappingRainWaterBy3D {
 
     public static void main(String[] args) {
         Assert.assertEquals(4, new TrappingRainWaterBy3D().trapRainWater(new int[][] {
-                                                                                       //
-                                                                                       { 1, 4, 3, 1, 3, 2 },
-                                                                                       //
-                                                                                       { 3, 2, 1, 3, 2, 4 },
-                                                                                       //
-                                                                                       { 2, 3, 3, 2, 3, 1 } }));
+                //
+                { 1, 4, 3, 1, 3, 2 },
+                //
+                { 3, 2, 1, 3, 2, 4 },
+                //
+                { 2, 3, 3, 2, 3, 1 } }));
 
         Assert.assertEquals(2, new TrappingRainWaterBy3D().trapRainWater(new int[][] {
-                                                                                       //
-                                                                                       { 2, 2, 2 },
-                                                                                       //
-                                                                                       { 2, 1, 2 },
-                                                                                       //
-                                                                                       { 2, 1, 2 },
-                                                                                       //
-                                                                                       { 2, 2, 2 } }));
+                //
+                { 2, 2, 2 },
+                //
+                { 2, 1, 2 },
+                //
+                { 2, 1, 2 },
+                //
+                { 2, 2, 2 } }));
 
         Assert.assertEquals(0, new TrappingRainWaterBy3D().trapRainWater(new int[][] {
-                                                                                       //
-                                                                                       { 2, 2, 2 },
-                                                                                       //
-                                                                                       { 2, 1, 2 },
-                                                                                       //
-                                                                                       { 2, 1, 2 },
-                                                                                       //
-                                                                                       { 2, 1, 2 } }));
+                //
+                { 2, 2, 2 },
+                //
+                { 2, 1, 2 },
+                //
+                { 2, 1, 2 },
+                //
+                { 2, 1, 2 } }));
     }
 }
