@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 
 /**
  * 3D接雨水
- * 解题思路：最小堆,始终先处理最低高度的点
+ * 解题思路：小顶堆,始终先处理最低高度的点
  * https://leetcode.cn/problems/trapping-rain-water-ii/description/
  *
  * @author gxl

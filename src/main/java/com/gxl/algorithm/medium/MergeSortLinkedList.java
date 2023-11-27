@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  * 链表排序
- * 解题思路：归并排序+快慢指针
+ * 解题思路：分治算法-归并排序+快慢指针
  * https://leetcode.cn/problems/7WHec2/
  *
  * @author gxl
