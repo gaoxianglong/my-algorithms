@@ -18,13 +18,13 @@ public class MultiplyStrings {
             return rlt;
         }
         for (var i = num1.length() - 1; i >= 0; i--) {
-            var t1 = num1.charAt(i) - '0';
             var builder = new StringBuilder();
-            var carry = 0;
             for (var j = num1.length() - 1; j > i; j--) {
                 builder.append('0');
             }
+            var carry = 0;
             for (var k = num2.length() - 1; k >= 0; k--) {
+                var t1 = num1.charAt(i) - '0';
                 var t2 = num2.charAt(k) - '0';
                 var t3 = t1 * t2 + carry;
                 carry = t3 / 10;
@@ -38,6 +38,12 @@ public class MultiplyStrings {
         return rlt;
     }
 
+    /**
+     * 竖式加法
+     * @param num1
+     * @param num2
+     * @return
+     */
     public String addStrings(String num1, String num2) {
         var builder = new StringBuilder();
         int i = num1.length() - 1, j = num2.length() - 1, carry = 0;
@@ -45,7 +51,7 @@ public class MultiplyStrings {
             var t1 = i >= 0 ? num1.charAt(i--) - '0' : 0;
             var t2 = j >= 0 ? num2.charAt(j--) - '0' : 0;
             var t3 = t1 + t2 + carry;
-            carry = t3 / 10;
+            carry = carry / 10;
             builder.append(t3 % 10);
         }
         return builder.reverse().toString();
