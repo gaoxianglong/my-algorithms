@@ -51,7 +51,7 @@ public class MultiplyStrings {
             var t1 = i >= 0 ? num1.charAt(i--) - '0' : 0;
             var t2 = j >= 0 ? num2.charAt(j--) - '0' : 0;
             var t3 = t1 + t2 + carry;
-            carry = carry / 10;
+            carry = t3 / 10;
             builder.append(t3 % 10);
         }
         return builder.reverse().toString();
@@ -59,5 +59,6 @@ public class MultiplyStrings {
 
     public static void main(String[] args) {
         Assert.assertEquals("156", new MultiplyStrings().multiply("12", "13"));
+        Assert.assertEquals("56088", new MultiplyStrings().multiply("123", "456"));
     }
 }
