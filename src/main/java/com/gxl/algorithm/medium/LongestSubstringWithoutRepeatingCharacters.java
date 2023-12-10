@@ -22,7 +22,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
         int rlt = 0, n = s.length(), leftIndex = 0;
         for (var i = 0; i < n; i++) {
             if (map.containsKey(s.charAt(i))) {
-                // 重复字段的下一个作为起始位,且前面已经计算过,所以左指针只能向后膨胀
+                // 重复字段的下一个作为起始位,左指针只能向后膨胀
                 leftIndex = Math.max(map.get(s.charAt(i)) + 1, leftIndex);
             }
             map.put(s.charAt(i), i);
@@ -35,6 +35,6 @@ public class LongestSubstringWithoutRepeatingCharacters {
         var l = new LongestSubstringWithoutRepeatingCharacters();
         Assert.assertEquals(3, l.lengthOfLongestSubstring("dvdf"));
         Assert.assertEquals(2, l.lengthOfLongestSubstring("abba"));
-        Assert.assertEquals(8, l.lengthOfLongestSubstring("abcaqwert"));
+        Assert.assertEquals(3, l.lengthOfLongestSubstring("abcab"));
     }
 }
