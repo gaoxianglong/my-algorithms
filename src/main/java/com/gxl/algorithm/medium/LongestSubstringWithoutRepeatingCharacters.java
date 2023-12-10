@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 无重复字符的最长子串
- * 解题思路：滑动窗口,记录左指针
+ * 解题思路：滑动窗口,记录左指针，时间复杂度O(n)
  * https://leetcode.cn/problems/longest-substring-without-repeating-characters/
  *
  * @author gxl
