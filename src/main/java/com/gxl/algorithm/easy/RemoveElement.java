@@ -15,7 +15,7 @@ public class RemoveElement {
     public int removeElement(int[] nums, int val) {
         int i = 0, j = 0, n = nums.length;
         for (; j < nums.length; j++) {
-            // 相同时指针i不移动,最后指针长度区间数据就是有效数据
+            // 当前值不等于val时指针i移动,最后指针长度区间数据就是有效数据
             if (nums[j] != val) {
                 nums[i++] = nums[j];
             }
