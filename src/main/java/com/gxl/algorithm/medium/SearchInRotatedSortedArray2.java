@@ -2,8 +2,6 @@ package com.gxl.algorithm.medium;
 
 import org.junit.Assert;
 
-import java.util.Arrays;
-
 /**
  * 搜索旋转排序数组2
  * 解题思路：二分查找
@@ -13,7 +11,7 @@ import java.util.Arrays;
  * @version Id: 1.0.0
  * @since 2023/12/20 21:59
  */
-public class SearchInRotatedSortedArray {
+public class SearchInRotatedSortedArray2 {
     public boolean search(int[] nums, int target) {
         int l = 0, r = nums.length - 1;
         while (l <= r) {
@@ -50,7 +48,7 @@ public class SearchInRotatedSortedArray {
     }
 
     public static void main(String[] args) {
-        var s = new SearchInRotatedSortedArray();
+        var s = new SearchInRotatedSortedArray2();
         Assert.assertTrue(s.search(new int[] { 2, 5, 6, 0, 0, 1, 2 }, 0));
         Assert.assertFalse(s.search(new int[] { 2, 5, 6, 0, 0, 1, 2 }, 3));
     }

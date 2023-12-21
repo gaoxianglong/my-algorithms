@@ -19,11 +19,11 @@ public class SearchInsertPosition {
             if (nums[mid] == target) {
                 return mid;
             }
-            if (nums[mid] < target) {
-                l = ++mid;
-            } else {
+            if (nums[mid] > target) {
                 rlt = mid;
                 r = --mid;
+            } else {
+                l = ++mid;
             }
         }
         return rlt;

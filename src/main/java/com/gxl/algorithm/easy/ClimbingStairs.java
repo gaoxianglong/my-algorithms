@@ -1,5 +1,7 @@
 package com.gxl.algorithm.easy;
 
+import org.junit.Assert;
+
 /**
  * 爬楼梯
  * 解题思路：动态规划
@@ -10,21 +12,23 @@ package com.gxl.algorithm.easy;
  * @since 2023/12/20 11:05
  */
 public class ClimbingStairs {
-    //    public int climbStairs(int n) {
-    //
-    //    }
+    public int climbStairs(int n) {
+        if (n <= 1) {
+            return 1;
+        }
+        var dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (var i = 2; i <= n; i++) {
+            // 状态转移方程dp[i-1] + dp[i-2]
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
+    }
 
     public static void main(String[] args) {
-        // 预期输出1、2、3、4、5、6、7、8、9、10
-
-        // 统计100以内的偶数个数，但不包括18、28、38、48
-        int i = 0;
-        int j = 0;
-        for (; i < 100; i++) {
-            if (i % 2 == 0) {
-                ++j;
-            }
-        }
-        System.out.println(j);
+        var c = new ClimbingStairs();
+        Assert.assertEquals(2, c.climbStairs(2));
+        Assert.assertEquals(3, c.climbStairs(3));
     }
 }
