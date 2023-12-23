@@ -19,7 +19,7 @@ public class MergeSortLinkedList {
             return head;
         }
         // 找到链表的中间节点
-        var middle = findMiddle(head);
+        var middle = findMid(head);
 
         // 直至拆分为单个元素
         var left = sortList(head);
@@ -34,7 +34,7 @@ public class MergeSortLinkedList {
      * @param node
      * @return
      */
-    private ListNode findMiddle(ListNode node) {
+    private ListNode findMid(ListNode node) {
         // 定义快/慢指针
         ListNode slow = node, fast = node, prev = null;
         // 快指针每次移动两步，慢指针每次移动一步。当快指针到达链表尾部时，慢指针所在的位置就是链表的中间位置
