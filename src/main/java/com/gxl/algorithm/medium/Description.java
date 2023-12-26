@@ -1,12 +1,11 @@
 package com.gxl.algorithm.medium;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 组合综合
+ * 组合总和
  * 解题思路:DFS
  * https://leetcode.cn/problems/combination-sum/description/
  *
