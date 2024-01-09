@@ -13,26 +13,35 @@ import org.junit.Assert;
  */
 public class ApplyOperations2MakeAllArrayElementsEqual2Zero {
     public boolean checkArray(int[] nums, int k) {
-        int n = nums.length, sumD = 0;
-        var d = new int[n + 1];
-        for (int i = 0; i < n; i++) {
-            sumD += d[i];
-            int x = nums[i];
-            x += sumD;
-            if (x == 0) {
-                continue;
-            }
-            if (x < 0 || i + k > n) {
+        var n = nums.length;
+        var diff = new int[n];
+        diff[0] = nums[0];
+        for (var i = 1; i < n; i++) {
+            diff[i] = nums[i] - nums[i - 1];
+        }
+        var j = 0;
+        for (; j + k < n; j++) {
+            if (diff[j] < 0) {
                 return false;
             }
-            sumD -= x; // 直接加到 sumD 中
-            d[i + k] += x;
+            if (diff[j] == 0) {
+                continue;
+            }
+            diff[j + k] += diff[j];
+            diff[j] = 0;
+        }
+        for (j++; j < n; j++) {
+            if (diff[j] != 0) {
+                return false;
+            }
         }
         return true;
     }
 
     public static void main(String[] args) {
         var a = new ApplyOperations2MakeAllArrayElementsEqual2Zero();
+        Assert.assertTrue(a.checkArray(new int[] { 60, 72, 87, 89, 63, 52, 64, 62, 31, 37, 57, 83, 98, 94, 92, 77, 94, 91, 87, 100, 91, 91, 50, 26 }, 4));
         Assert.assertTrue(a.checkArray(new int[] { 2, 2, 3, 1, 1, 0 }, 3));
+        Assert.assertTrue(a.checkArray(new int[] { 1, 1, 2, 2 }, 2));
     }
 }
