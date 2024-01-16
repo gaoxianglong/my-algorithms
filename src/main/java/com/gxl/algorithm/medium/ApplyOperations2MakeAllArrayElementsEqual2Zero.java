@@ -21,11 +21,11 @@ public class ApplyOperations2MakeAllArrayElementsEqual2Zero {
         }
         var j = 0;
         for (; j + k < n; j++) {
-            if (diff[j] < 0) {
-                return false;
-            }
             if (diff[j] == 0) {
                 continue;
+            }
+            if (diff[j] < 0) {
+                return false;
             }
             diff[j + k] += diff[j];
             diff[j] = 0;
