@@ -2,10 +2,12 @@ package com.gxl.algorithm.hard;
 
 import org.junit.Assert;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 红黑树
@@ -15,11 +17,11 @@ import java.util.Objects;
  * @since 2023/11/23 18:51
  */
 public class RBTree {
-    static enum Color {
-                       RED, BLACK;
+    enum Color {
+                RED, BLACK;
     }
 
-    static class Node {
+    class Node {
         int   key, value;
         Node  parent, left, right;
         Color color = Color.RED;
@@ -200,20 +202,19 @@ public class RBTree {
     void getBlackHeight() {
         var list = new ArrayList<String>();
         getBlackHeight(root, null, "", list, 0);
-        for (var path : list) {
-            System.out.println(path);
-        }
+        list.forEach(System.out::println);
         System.out.println();
     }
 
     void getBlackHeight(Node n1, Node n2, String path, List<String> list, int size) {
         if (Objects.nonNull(n1)) {
             path = String.format("%s%s(%s)->", path, n1.key, n1.color);
-            getBlackHeight(n1.left, n1, path, list, n1.color == Color.BLACK ? size + 1 : size);
-            getBlackHeight(n1.right, n1, path, list, n1.color == Color.BLACK ? size + 1 : size);
+            getBlackHeight(n1.left, n1, path, list, n1.color == Color.BLACK ? 1 + size : size);
+            getBlackHeight(n1.right, n1, path, list, n1.color == Color.BLACK ? 1 + size : size);
             return;
         }
         if (Objects.isNull(n2.left) && Objects.isNull(n2.right)) {
+            path = path.substring(0, path.lastIndexOf("->"));
             path = String.format("%s,size:%s", path, size);
             if (!list.contains(path)) {
                 list.add(path);
@@ -237,7 +238,7 @@ public class RBTree {
 
     Node getNode(int key) {
         if (Objects.nonNull(root)) {
-            return root.key == key ? root : getNode(key, root);
+            return key == root.key ? root : getNode(key, root);
         }
         return null;
     }
@@ -262,8 +263,8 @@ public class RBTree {
 
     Node getSucceedNode(Node n) {
         if (Objects.nonNull(n)) {
-            var sn = getSucceedNode(n.right);
-            return Objects.nonNull(sn) ? sn : n;
+            var rlt = getSucceedNode(n.right);
+            return Objects.nonNull(rlt) ? rlt : n;
         }
         return null;
     }
@@ -387,8 +388,11 @@ public class RBTree {
     }
 
     boolean isValidBST() {
+        if (Objects.isNull(root)) {
+            return false;
+        }
         var list = new ArrayList<Integer>();
-        isValidBST(root, list);
+        inOrder(root, list);
         int i = 0, j = 1, n = list.size();
         for (; j < n; i++, j++) {
             if (list.get(i) >= list.get(j)) {
@@ -398,13 +402,13 @@ public class RBTree {
         return true;
     }
 
-    void isValidBST(Node n, List<Integer> list) {
+    void inOrder(Node n, List<Integer> list) {
         if (Objects.isNull(n)) {
             return;
         }
-        isValidBST(n.left, list);
+        inOrder(n.left, list);
         list.add(n.key);
-        isValidBST(n.right, list);
+        inOrder(n.right, list);
     }
 
     void clear() {
@@ -415,9 +419,8 @@ public class RBTree {
     }
 
     public static void main(String[] agrs) {
-        Integer[] temp = { 200, 100, 300, 250, 400, 350 };
         var tree = new RBTree();
-        Arrays.asList(temp).forEach(x -> tree.insert(x, x));
+        Arrays.asList(200, 100, 300, 250, 400, 350).forEach(x -> tree.insert(x, x));
         tree.inOrder();
         tree.getBlackHeight();
         Assert.assertEquals(4, tree.getBlackSize());
@@ -439,8 +442,7 @@ public class RBTree {
         Assert.assertEquals(true, tree.isValidBST());
 
         tree.clear();
-        Integer[] temp2 = { 200, 100, 400, 250, 500 };
-        Arrays.asList(temp2).forEach(x -> tree.insert(x, x));
+        Arrays.asList(200, 100, 400, 250, 500).forEach(x -> tree.insert(x, x));
         Assert.assertEquals(3, tree.getBlackSize());
         tree.inOrder();
         tree.getBlackHeight();
@@ -455,5 +457,31 @@ public class RBTree {
         tree.inOrder();
         tree.getBlackHeight();
         Assert.assertEquals(true, tree.isValidBST());
+
+        tree.clear();
+        Arrays.asList(200, 500, 300, 120, 250, 400, 350).forEach(x -> tree.insert(x, x));
+        tree.delete(300);
+        tree.delete(250);
+        tree.insert(1, 1);
+        tree.insert(10, 10);
+        tree.insert(15, 15);
+        tree.getBlackHeight();
+        Assert.assertEquals(200, tree.root.key);
+        Assert.assertEquals(10, tree.root.left.key);
+        Assert.assertEquals(Color.RED, tree.root.left.color);
+        Assert.assertEquals(1, tree.root.left.left.key);
+        Assert.assertEquals(Color.BLACK, tree.root.left.left.color);
+        Assert.assertEquals(120, tree.root.left.right.key);
+        Assert.assertEquals(Color.BLACK, tree.root.left.right.color);
+        Assert.assertEquals(10, tree.root.left.right.parent.key);
+        Assert.assertEquals(15, tree.root.left.right.left.key);
+        Assert.assertEquals(Color.RED, tree.root.left.right.left.color);
+
+        Assert.assertEquals(400, tree.root.right.key);
+        Assert.assertEquals(Color.BLACK, tree.root.right.color);
+        Assert.assertEquals(350, tree.root.right.left.key);
+        Assert.assertEquals(Color.RED, tree.root.right.left.color);
+        Assert.assertEquals(500, tree.root.right.right.key);
+        Assert.assertEquals(Color.RED, tree.root.right.right.color);
     }
 }
