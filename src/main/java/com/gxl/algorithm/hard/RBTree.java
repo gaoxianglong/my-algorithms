@@ -3,10 +3,7 @@ package com.gxl.algorithm.hard;
 import org.junit.Assert;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -200,24 +197,24 @@ public class RBTree {
     }
 
     void getBlackHeight() {
-        var list = new ArrayList<String>();
-        getBlackHeight(root, null, "", list, 0);
-        list.forEach(System.out::println);
+        var paths = new ArrayList<String>();
+        getBlackHeight(root, null, "", paths, 0);
+        paths.forEach(System.out::println);
         System.out.println();
     }
 
-    void getBlackHeight(Node n1, Node n2, String path, List<String> list, int size) {
+    void getBlackHeight(Node n1, Node n2, String path, List<String> paths, int size) {
         if (Objects.nonNull(n1)) {
             path = String.format("%s%s(%s)->", path, n1.key, n1.color);
-            getBlackHeight(n1.left, n1, path, list, n1.color == Color.BLACK ? 1 + size : size);
-            getBlackHeight(n1.right, n1, path, list, n1.color == Color.BLACK ? 1 + size : size);
+            getBlackHeight(n1.left, n1, path, paths, n1.color == Color.BLACK ? 1 + size : size);
+            getBlackHeight(n1.right, n1, path, paths, n1.color == Color.BLACK ? 1 + size : size);
             return;
         }
         if (Objects.isNull(n2.left) && Objects.isNull(n2.right)) {
             path = path.substring(0, path.lastIndexOf("->"));
             path = String.format("%s,size:%s", path, size);
-            if (!list.contains(path)) {
-                list.add(path);
+            if (!paths.contains(path)) {
+                paths.add(path);
             }
         }
     }
@@ -263,8 +260,8 @@ public class RBTree {
 
     Node getSucceedNode(Node n) {
         if (Objects.nonNull(n)) {
-            var rlt = getSucceedNode(n.right);
-            return Objects.nonNull(rlt) ? rlt : n;
+            var sn = getSucceedNode(n.right);
+            return Objects.nonNull(sn) ? sn : n;
         }
         return null;
     }

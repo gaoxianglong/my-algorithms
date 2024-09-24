@@ -72,9 +72,10 @@ public class Difference {
     }
 
     public static void main(String[] args) {
-        var d = new Difference();
-        System.out.println(Arrays.toString(d.increment(new int[] { 0, 0, 1, 1, 2 }, 0, 3, 5)));
-        System.out.println(Arrays.toString(d.increment(new int[] { 0, 0, 1, 1, 2 }, 0, 4, 1)));
-        System.out.println(Arrays.toString(d.increment(new int[] { 1, 1, 1, 1 }, 0, 3, 2)));
+//        var d = new Difference();
+//        System.out.println(Arrays.toString(d.increment(new int[] { 0, 0, 1, 1, 2 }, 0, 3, 5)));
+//        System.out.println(Arrays.toString(d.increment(new int[] { 0, 0, 1, 1, 2 }, 0, 4, 1)));
+//        System.out.println(Arrays.toString(d.increment(new int[] { 1, 1, 1, 1 }, 0, 3, 2)));
+        System.out.println(String.class.cast("123aaa"));
     }
 }

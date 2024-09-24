@@ -3,6 +3,9 @@ package com.gxl.algorithm.hard;
 import org.junit.Assert;
 
 import java.util.LinkedList;
+import java.util.UUID;
+import java.util.zip.CRC32;
+import java.util.zip.Checksum;
 
 /**
  * 最长有效括号
@@ -35,18 +38,30 @@ public class LongestValidParentheses {
             }
             max = Math.max(max, i - stack.peek());
         }
+
         return max;
     }
 
     public static void main(String[] args) {
-        var l = new LongestValidParentheses();
-        Assert.assertEquals(6, l.longestValidParentheses("((()))"));
-        Assert.assertEquals(2, l.longestValidParentheses("())()"));
-        Assert.assertEquals(2, l.longestValidParentheses("))()"));
-        Assert.assertEquals(4, l.longestValidParentheses("()()"));
-        Assert.assertEquals(2, l.longestValidParentheses("(()"));
-        Assert.assertEquals(4, l.longestValidParentheses("(())"));
-        Assert.assertEquals(0, l.longestValidParentheses(""));
-        Assert.assertEquals(4, l.longestValidParentheses(")()())"));
+        //        var l = new LongestValidParentheses();
+        //        Assert.assertEquals(6, l.longestValidParentheses("((()))"));
+        //        Assert.assertEquals(2, l.longestValidParentheses("())()"));
+        //        Assert.assertEquals(2, l.longestValidParentheses("))()"));
+        //        Assert.assertEquals(4, l.longestValidParentheses("()()"));
+        //        Assert.assertEquals(2, l.longestValidParentheses("(()"));
+        //        Assert.assertEquals(4, l.longestValidParentheses("(())"));
+        //        Assert.assertEquals(0, l.longestValidParentheses(""));
+        //        Assert.assertEquals(4, l.longestValidParentheses(")()())"));
+        String input = "0000";
+        byte[] bytes = input.getBytes();
+        Checksum checksum = new CRC32();
+        checksum.update(bytes, 0, bytes.length);
+        long crc32Value = checksum.getValue();
+        System.out.println(crc32Value);
+        System.out.println(String.format("%010d", crc32Value));
+
+        var tt = "VID20240122221158.aa.mp4".split("\\.");
+        System.out.println(tt[tt.length - 1]);
+        System.out.println("VID20240122221158.aa.mp4".substring(0,"VID20240122221158.aa.mp4".lastIndexOf("mp4")) + "dog");
     }
 }
